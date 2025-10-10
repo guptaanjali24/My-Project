@@ -11,10 +11,9 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 
 const PORT = 3000;
 
-
-app.get('/project', async (req, res) => {
+app.get('/Project', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('project').select('*');
+        const { data, error } = await supabase.from('Project').select('*');
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -22,9 +21,9 @@ app.get('/project', async (req, res) => {
     }
 });
 
-app.post('/project', async (req, res) => {
+app.post('/Project', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('project').insert([req.body]);
+        const { data, error } = await supabase.from('Project').insert([req.body]);
         if (error) throw error;
         res.json({ message: 'Project added successfully', data });
     } catch (err) {
@@ -33,9 +32,9 @@ app.post('/project', async (req, res) => {
 });
 
 
-app.get('/users', async (req, res) => {
+app.get('/Users', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('users').select('*');
+        const { data, error } = await supabase.from('Users').select('*');
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -43,9 +42,9 @@ app.get('/users', async (req, res) => {
     }
 });
 
-app.post('/users', async (req, res) => {
+app.post('/Users', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('users').insert([req.body]);
+        const { data, error } = await supabase.from('Users').insert([req.body]);
         if (error) throw error;
         res.json({ message: 'User added successfully', data });
     } catch (err) {
@@ -53,9 +52,9 @@ app.post('/users', async (req, res) => {
     }
 });
 
-app.get('/stock', async (req, res) => {
+app.get('/Stock', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('STOCK').select('*');
+        const { data, error } = await supabase.from('Stock').select('*');
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -63,9 +62,9 @@ app.get('/stock', async (req, res) => {
     }
 });
 
-app.post('/stock', async (req, res) => {
+app.post('/Stock', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('STOCK').insert([req.body]);
+        const { data, error } = await supabase.from('Stock').insert([req.body]);
         if (error) throw error;
         res.json({ message: 'Stock added successfully', data });
     } catch (err) {
@@ -73,9 +72,9 @@ app.post('/stock', async (req, res) => {
     }
 });
 
-app.get('/expense', async (req, res) => {
+app.get('/Expenses', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('expense').select('*');
+        const { data, error } = await supabase.from('Expenses').select('*');
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -83,40 +82,20 @@ app.get('/expense', async (req, res) => {
     }
 });
 
-app.post('/expense', async (req, res) => {
+app.post('/Expenses', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('expense').insert([req.body]);
+        const { data, error } = await supabase.from('Expenses').insert([req.body]);
         if (error) throw error;
-        res.json({ message: 'Expense added successfully', data });
+        res.json({ message: 'Expenses added successfully', data });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
 
-app.get('/bill', async (req, res) => {
+app.get('/Bills', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('bill').select('*');
-        if (error) throw error;
-        res.json(data);
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.post('/bill', async (req, res) => {
-    try {
-        const { data, error } = await supabase.from('bill').insert([req.body]);
-        if (error) throw error;
-        res.json({ message: 'Bill added successfully', data });
-    } catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-
-app.get('/clientpayment', async (req, res) => {
-    try {
-        const { data, error } = await supabase.from('clientpayment').select('*');
+        const { data, error } = await supabase.from('Bills').select('*');
         if (error) throw error;
         res.json(data);
     } catch (err) {
@@ -124,16 +103,35 @@ app.get('/clientpayment', async (req, res) => {
     }
 });
 
-app.post('/clientpayment', async (req, res) => {
+app.post('/Bills', async (req, res) => {
     try {
-        const { data, error } = await supabase.from('clientpayment').insert([req.body]);
+        const { data, error } = await supabase.from('Bills').insert([req.body]);
         if (error) throw error;
-        res.json({ message: 'Client Payment added successfully', data });
+        res.json({ message: 'Bills added successfully', data });
     } catch (err) {
         res.status(500).json({ error: err.message });
     }
 });
 
+app.get('/Client_payments', async (req, res) => {
+    try {
+        const { data, error } = await supabase.from('Client_payments').select('*');
+        if (error) throw error;
+        res.json(data);
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
+
+app.post('/Client_payments', async (req, res) => {
+    try {
+        const { data, error } = await supabase.from('Client_payments').insert([req.body]);
+        if (error) throw error;
+        res.json({ message: 'Client Payments added successfully', data });
+    } catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});
 
 app.listen(PORT, () => {
     console.log(`Server running on http://localhost:${PORT}`);
