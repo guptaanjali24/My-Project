@@ -1,4 +1,5 @@
-const { createController } = require('./genericController');
-const service = require('../services/projectService');
-module.exports = createController(service);
 
+import { projectService } from '../services/projectService.js';
+import { genericController } from './genericController.js';
+
+export const projectController = genericController(projectService, 'Project', 'project_id');

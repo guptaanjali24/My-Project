@@ -1,25 +1,19 @@
-require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import billRoutes from './routes/billRoutes.js';
+import clientPaymentRoutes from './routes/clientPaymentRoutes.js';
+import expenseRoutes from './routes/expenseRoutes.js';
+import projectRoutes from './routes/projectRoutes.js';
+import stockRoutes from './routes/stockRoutes.js';
+import userRoutes from './routes/userRoutes.js';
+
 const app = express();
-
 app.use(express.json());
-app.use(cors());
 
-// Import routes
-const billRoutes = require('./routes/billRoutes');
-const clientPaymentRoutes = require('./routes/clientPaymentRoutes');
-const expenseRoutes = require('./routes/expenseRoutes');
-const projectRoutes = require('./routes/projectRoutes');
-const stockRoutes = require('./routes/stockRoutes');
-const userRoutes = require('./routes/userRoutes');
+app.use('/bills', billRoutes);
+app.use('/client_payments', clientPaymentRoutes);
+app.use('/expenses', expenseRoutes);
+app.use('/projects', projectRoutes);
+app.use('/stock', stockRoutes);
+app.use('/users', userRoutes);
 
-// Register routes
-app.use('/api/bills', billRoutes);
-app.use('/api/client-payments', clientPaymentRoutes);
-app.use('/api/expenses', expenseRoutes);
-app.use('/api/projects', projectRoutes);
-app.use('/api/stocks', stockRoutes);
-app.use('/api/users', userRoutes);
-
-module.exports = app;
+export default app;

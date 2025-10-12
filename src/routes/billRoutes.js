@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
+import { billController } from '../controllers/billController.js';
 const router = express.Router();
-const billController = require('../controllers/billController');
 
 router.get('/', billController.getAll);
 router.get('/:id', billController.getById);
@@ -8,4 +8,4 @@ router.post('/', billController.create);
 router.put('/:id', billController.update);
 router.delete('/:id', billController.remove);
 
-module.exports = router;
+export default router;

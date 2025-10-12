@@ -1,2 +1,2 @@
-const { createService } = require('./genericService');
-module.exports = createService('Client_payments');
+import { genericService } from './genericService.js';
+export const clientPaymentService = genericService;

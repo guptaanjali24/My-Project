@@ -1,11 +1,11 @@
-const express = require('express');
+import express from 'express';
+import { clientPaymentController } from '../controllers/clientPaymentController.js';
 const router = express.Router();
-const controller = require('../controllers/clientPaymentController');
 
-router.get('/', controller.getAll);
-router.get('/:id', controller.getById);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.delete('/:id', controller.remove);
+router.get('/', clientPaymentController.getAll);
+router.get('/:id', clientPaymentController.getById);
+router.post('/', clientPaymentController.create);
+router.put('/:id', clientPaymentController.update);
+router.delete('/:id', clientPaymentController.remove);
 
-module.exports = router;
+export default router;

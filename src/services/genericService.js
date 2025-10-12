@@ -1,43 +1,35 @@
-const supabase = require('../config/supabaseClient');
+import { supabase } from '../config/supabaseClient.js';
 
-function createService(tableName) {
-  return {
-    //  Get all rows
-    getAll: async () => {
-      const { data, error } = await supabase.from(tableName).select('*');
-      if (error) throw new Error(error.message);
-      return data;
-    },
+export const genericService = {
+  async getAll(table) {
+    const { data, error } = await supabase.from(table).select('*');
+    if (error) throw error;
+    return data;
+  },
 
-    //  Get by ID
-    getById: async (id) => {
-      const { data, error } = await supabase.from(tableName).select('*').eq('id', id).single();
-      if (error) throw new Error(error.message);
-      return data;
-    },
+  async getById(table, id, idField = 'id') {
+    const { data, error } = await supabase.from(table).select('*').eq(idField, id).single();
+    if (error) throw error;
+    return data;
+  },
 
-    //  Create new
-    create: async (body) => {
-      const { data, error } = await supabase.from(tableName).insert([body]).select();
-      if (error) throw new Error(error.message);
-      return data[0];
-    },
+  async create(table, payload) {
+    const { data, error } = await supabase.from(table).insert(payload).select();
+    if (error) throw error;
+    return data;
+  },
 
-    //  Update
-    update: async (id, body) => {
-      const { data, error } = await supabase.from(tableName).update(body).eq('user_id', id).select();
-      if (error) throw new Error(error.message);
-       console.log(`Updated ${tableName} row with ID ${id}:`, data);
-      return data[0];
-    },
+  async update(table, id, payload, idField = 'id') {
+    const { data, error } = await supabase.from(table).update(payload).eq(idField, id).select();
+    if (error) throw error;
+    return data;
+  },
 
-    // Delete
-    remove: async (id) => {
-      const { error } = await supabase.from(tableName).delete().eq('id', id);
-      if (error) throw new Error(error.message);
-      return true;
-    },
-  };
-}
+  async remove(table, id, idField = 'id') {
+    const { error } = await supabase.from(table).delete().eq(idField, id);
+    if (error) throw error;
+    return { message: 'Deleted successfully' };
+  },
+};
 
-module.exports = { createService };
+

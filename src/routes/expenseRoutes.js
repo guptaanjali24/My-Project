@@ -1,11 +1,12 @@
-const express = require('express');
+import express from 'express';
+import { expenseController } from '../controllers/expenseController.js';
 const router = express.Router();
-const controller = require('../controllers/expenseController');
 
-router.get('/', controller.getAll);
-router.get('/:id', controller.getById);
-router.post('/', controller.create);
-router.put('/:id', controller.update);
-router.delete('/:id', controller.remove);
+router.get('/', expenseController.getAll);
+router.get('/:id', expenseController.getById);
+router.post('/', expenseController.create);
+router.put('/:id', expenseController.update);
+router.delete('/:id', expenseController.remove);
 
-module.exports = router;
+export default router;
+
